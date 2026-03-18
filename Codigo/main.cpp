@@ -16,18 +16,41 @@ void mostrarMapa(int lugares[FILAS][COLUNAS]) {
     }
 }
 
+void reservarLugar(int lugares[FILAS][COLUNAS]) {
+    int fila, coluna;
+
+    cout << "Fila: ";
+    cin >> fila;
+
+    cout << "Lugar: ";
+    cin >> coluna;
+
+    fila--;
+    coluna--;
+
+    if (lugares[fila][coluna] == 0) {
+        lugares[fila][coluna] = 1;
+        cout << "Reservado!\n";
+    } else {
+        cout << "Já ocupado!\n";
+    }
+}
+
 int main() {
     int lugares[FILAS][COLUNAS] = {0};
     int opcao;
 
     do {
         cout << "\n1. Mostrar Mapa\n";
+        cout << "2. Reservar Lugar\n";
         cout << "0. Sair\n";
         cout << "Escolha: ";
         cin >> opcao;
 
         if (opcao == 1) {
             mostrarMapa(lugares);
+        } else if (opcao == 2) {
+            reservarLugar(lugares);
         }
 
     } while (opcao != 0);
