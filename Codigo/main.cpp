@@ -5,7 +5,6 @@ using namespace std;
 const int FILAS = 10;
 const int COLUNAS = 4;
 
-// NOVO: carregar dados do ficheiro
 void carregarMapa(int lugares[FILAS][COLUNAS]) {
     ifstream ficheiro("mapa_viagem.txt");
 
@@ -22,6 +21,20 @@ void carregarMapa(int lugares[FILAS][COLUNAS]) {
         for (int j = 0; j < COLUNAS; j++) {
             ficheiro >> lugares[i][j];
         }
+    }
+
+    ficheiro.close();
+}
+
+// NOVO: guardar dados
+void guardarMapa(int lugares[FILAS][COLUNAS]) {
+    ofstream ficheiro("mapa_viagem.txt");
+
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            ficheiro << lugares[i][j] << " ";
+        }
+        ficheiro << endl;
     }
 
     ficheiro.close();
@@ -59,6 +72,9 @@ void reservarLugar(int lugares[FILAS][COLUNAS]) {
     if (lugares[fila][coluna] == 0) {
         lugares[fila][coluna] = 1;
         cout << "Reservado!\n";
+
+        // NOVO: guardar imediatamente
+        guardarMapa(lugares);
     } else {
         cout << "Já ocupado!\n";
     }
@@ -68,7 +84,6 @@ int main() {
     int lugares[FILAS][COLUNAS];
     int opcao;
 
-    // NOVO: carregar dados ao iniciar
     carregarMapa(lugares);
 
     do {
