@@ -1,8 +1,31 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 const int FILAS = 10;
 const int COLUNAS = 4;
+
+// NOVO: carregar dados do ficheiro
+void carregarMapa(int lugares[FILAS][COLUNAS]) {
+    ifstream ficheiro("mapa_viagem.txt");
+
+    if (!ficheiro) {
+        for (int i = 0; i < FILAS; i++) {
+            for (int j = 0; j < COLUNAS; j++) {
+                lugares[i][j] = 0;
+            }
+        }
+        return;
+    }
+
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            ficheiro >> lugares[i][j];
+        }
+    }
+
+    ficheiro.close();
+}
 
 void mostrarMapa(int lugares[FILAS][COLUNAS]) {
     cout << "\nMapa de Lugares\n\n";
@@ -42,8 +65,11 @@ void reservarLugar(int lugares[FILAS][COLUNAS]) {
 }
 
 int main() {
-    int lugares[FILAS][COLUNAS] = {0};
+    int lugares[FILAS][COLUNAS];
     int opcao;
+
+    // NOVO: carregar dados ao iniciar
+    carregarMapa(lugares);
 
     do {
         cout << "\n1. Mostrar Mapa\n";
