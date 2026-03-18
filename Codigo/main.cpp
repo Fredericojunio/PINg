@@ -18,8 +18,19 @@ void mostrarMapa(int lugares[FILAS][COLUNAS]) {
 
 int main() {
     int lugares[FILAS][COLUNAS] = {0};
+    int opcao;
 
-    mostrarMapa(lugares);
+    do {
+        cout << "\n1. Mostrar Mapa\n";
+        cout << "0. Sair\n";
+        cout << "Escolha: ";
+        cin >> opcao;
+
+        if (opcao == 1) {
+            mostrarMapa(lugares);
+        }
+
+    } while (opcao != 0);
 
     return 0;
 }
