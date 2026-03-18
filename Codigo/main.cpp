@@ -19,14 +19,19 @@ void mostrarMapa(int lugares[FILAS][COLUNAS]) {
 void reservarLugar(int lugares[FILAS][COLUNAS]) {
     int fila, coluna;
 
-    cout << "Fila: ";
+    cout << "Fila (1-10): ";
     cin >> fila;
 
-    cout << "Lugar: ";
+    cout << "Lugar (1-4): ";
     cin >> coluna;
 
     fila--;
     coluna--;
+
+    if (fila < 0 || fila >= FILAS || coluna < 0 || coluna >= COLUNAS) {
+        cout << "Posição inválida!\n";
+        return;
+    }
 
     if (lugares[fila][coluna] == 0) {
         lugares[fila][coluna] = 1;
